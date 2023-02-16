@@ -11,7 +11,7 @@ function EmailInput () {
 function SummariseButton () {
     return (
         <div>
-            <button id = 'summariseButton'>Summarise</button><br/>
+            <button className="button-9" role="button">Summarise</button>
         </div>
     )
 }

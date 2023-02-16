@@ -10,8 +10,7 @@
     },
     "content_scripts": [
         {
-          "js": ["index.js"],
-          "css": ["style.css"],
+          "js": ["sidebar.js"],
           "matches": ["<all_urls>"]
         }
     ]

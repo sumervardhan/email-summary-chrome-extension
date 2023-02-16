@@ -1,0 +1,19 @@
+{
+  "name": "email-summary-chrome-extension",
+  "version": "1.0.0",
+  "description": "Summarise emails directly from your browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumervardhan/openai-email-summary-chrome-extension.git"
+  },
+  "author": "Sumer Vardhan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumervardhan/openai-email-summary-chrome-extension/issues"
+  },
+  "homepage": "https://github.com/sumervardhan/openai-email-summary-chrome-extension#readme"
+}

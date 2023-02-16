@@ -1,0 +1,18 @@
+{
+    "name": "Summarise.ai",
+    "version": "2023.0.0",
+    "description": "Summarise your emails",
+    "manifest_version": 3,
+    "author": "Sumer Vardhan",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": ""
+    },
+    "content_scripts": [
+        {
+          "js": ["script.js"],
+          "css": ["style.css"],
+          "matches": ["<all_urls>"]
+        }
+    ]
+}

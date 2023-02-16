@@ -1,14 +1,25 @@
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom/client";
 
-function Sidebar () {
+function EmailInput () {
     return (
-        <div>
-            <h2>Summarise Email</h2>
-            <input type = "text" value = "Insert email here..." id = "emailInput"></input>
-            <button id="summariseButton">Summarise</button>
-        </div>
+        <input type = "text" defaultValue = "Insert email here..." id = "emailInput"></input>
     );
 }
 
-render(<Sidebar />, document.getElementById("react-target"));
+function SummariseButton () {
+    return (
+        <div>
+            <button id = 'summariseButton'>Summarise</button><br/>
+        </div>
+    )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('react-target'));
+
+root.render(
+<div>
+    <h2>Summarise Email</h2><br/>
+    <EmailInput /><br/>
+    <SummariseButton /><br/>
+</div>);

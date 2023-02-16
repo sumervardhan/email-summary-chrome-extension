@@ -11,6 +11,7 @@
     "content_scripts": [
         {
           "js": ["sidebar.js"],
+          "css": ["styles.css"],
           "matches": ["<all_urls>"]
         }
     ]

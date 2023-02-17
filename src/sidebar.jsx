@@ -1,6 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Frame } from './frame.js';
 import './styles/sidebar.css';
+
+if (Frame.isReady()) {
+  Frame.toggle()
+} else {
+  boot()
+}
+
+function boot() {
+    const root = ReactDOM.createRoot(document.getElementById('react-target'));
+
+    root.render(<Frame containerChildren={<PopUpContents />}/>)
+}
 
 function EmailInput () {
     return (
@@ -10,17 +23,18 @@ function EmailInput () {
 
 function SummariseButton () {
     return (
+        <button className="button-9" role="button">Summarise</button>
+    )
+}
+
+function PopUpContents () {
+    return (
         <div>
-            <button className="button-9" role="button">Summarise</button>
+            <EmailInput/><br/>
+            <SummariseButton/>
         </div>
     )
 }
 
-const root = ReactDOM.createRoot(document.getElementById('react-target'));
 
-root.render(
-<div>
-    <h2>Summarise Email</h2><br/>
-    <EmailInput /><br/>
-    <SummariseButton /><br/>
-</div>);
+

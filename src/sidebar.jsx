@@ -10,9 +10,22 @@ if (Frame.isReady()) {
 }
 
 function boot() {
+
+    const sidebar = document.createElement('div');
+    sidebar.id = 'react-target';
+    document.body.appendChild(sidebar);
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'styles/sidebar.css';
+    document.head.appendChild(link);
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
 
-    root.render(<Frame containerChildren={<PopUpContents />}/>)
+    root.render(<Frame containerChildren={<PopUpContents />}/>);
+
+    // const root = ReactDOM.createRoot(document.getElementById('react-target'));
+
+    // root.render(<Frame containerChildren={<PopUpContents />}/>)
 }
 
 function EmailInput () {

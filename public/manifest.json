@@ -5,13 +5,17 @@
     "manifest_version": 3,
     "author": "Sumer Vardhan",
     "action": {
-        "default_popup": "sidebar.html",
         "default_title": ""
     },
     "content_scripts": [
         {
           "js": ["sidebar.js"],
+          "css": ["styles/sidebar.css"],
           "matches": ["<all_urls>"]
         }
-    ]
+    ],
+    "permissions": ["activeTab", "scripting"],
+    "background": {
+      "service_worker": "background.js"
+    }
 }

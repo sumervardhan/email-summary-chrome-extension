@@ -14,11 +14,11 @@ function boot() {
     const sidebar = document.createElement('div');
     sidebar.id = 'react-target';
     document.body.appendChild(sidebar);
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = 'styles/sidebar.css';
-    document.head.appendChild(link);
+    // const link = document.createElement('link');
+    // link.rel = 'stylesheet';
+    // link.type = 'text/css';
+    // link.href = 'styles/sidebar.css';
+    // document.head.appendChild(link);
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
 
     root.render(<Frame containerChildren={<PopUpContents />}/>);
@@ -30,7 +30,7 @@ function boot() {
 
 function EmailInput () {
     return (
-        <input type = "text" defaultValue = "Insert email here..." id = "emailInput"></input>
+        <input type = "text" defaultValue = "Insert email here..." className = "emailInput"></input>
     );
 }
 
@@ -42,7 +42,8 @@ function SummariseButton () {
 
 function PopUpContents () {
     return (
-        <div>
+        <div class = "popupContainer">
+            <h3 class = "summariserTitle">Summarise!</h3><br/>
             <EmailInput/><br/>
             <SummariseButton/>
         </div>

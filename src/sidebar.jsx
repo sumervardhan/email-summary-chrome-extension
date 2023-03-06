@@ -7,6 +7,22 @@ import './styles/sidebar.css';
 const MODEL = "gpt-3.5-turbo"
 const CHAT_BOT_PRIMER = "You are a secretary for a busy CEO. Your job is to help summarise their emails, highlighting important points, questions, and action items."
 
+async function getOpenAiResponse() {
+    const url = 'https://email-summarizer-server.herokuapp.com/handleOpenAiApiCall'
+    const inputData = document.getElementById("emailInput").value
+    fetch(`${url}?input_data=${encodeURIComponent(inputData)}`, {
+    method: 'GET'
+    })
+    .then(response => response.json())
+    .then(resJson => {
+        document.getElementById('emailInput').value = resJson.data
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+
 // On extension click, render sidebar if it doesn't exist
 // Toggle sidebar if already rendered
 if (Frame.isReady()) {
@@ -25,21 +41,21 @@ function boot() {
 
 function EmailInput () {
     return (
-        <input type = "text" defaultValue = "Insert email here..." className = "emailInput">
+        <input type = "text" defaultValue = "Insert email here..." className = "emailInput" id ="emailInput">
         </input>
     );
 }
 
 function SummariseButton () {
     return (
-        <button className="button-9" role="button">Summarise</button>
+        <button className="button-9" role="button" onClick={getOpenAiResponse}>Summarise</button>
     )
 }
 
 function PopUpContents () {
     return (
-        <div class = "popupContainer">
-            <h1 class = "summariserTitle">Summarise!</h1><br/>
+        <div className = "popupContainer">
+            <h1 className = "summariserTitle">Summarise!</h1><br/>
             <EmailInput/><br/>
             <SummariseButton/>
         </div>
@@ -47,24 +63,7 @@ function PopUpContents () {
 }
 
 
-async function getOpenAiResponse() {
-    // const inputData = req.body.input_data;
-    const url = 'https://email-summarizer-server.herokuapp.com/handleOpenAiApiCall'
-    const inputData = "Hi Sumer, When can we meet tomorrow? We need to settled on the decision"
-    
-    fetch(`${url}?input_data=${encodeURIComponent(inputData)}`, {
-    method: 'GET'
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error(error);
-    });
-}
 
-console.log(getOpenAiResponse())
 
 
 

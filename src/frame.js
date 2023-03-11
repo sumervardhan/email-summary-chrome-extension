@@ -7,7 +7,8 @@ const iframeClass = css({
   border: 'none',
   width: '100%',
   height: '100%',
-  background: 'white',
+  background: 'black',
+  color: 'white',
   borderRadius: '8px',
   boxShadow: '-1px 1px 8px rgba(0,0,0,.15)'
 })
@@ -30,13 +31,11 @@ const maskVisibleClass = css({
 const containerClass = css({
   position: 'fixed',
   top: '0px',
-  right: '0px',
+  left: '0px',
   height: '100%',
   width: '65%',
   maxWidth: '400px',
-  padding: '8px',
   boxSizing: 'border-box',
-  transform: 'translateX(100%)',
   transition: 'transform .45s cubic-bezier(0, 0, 0.3, 1)',
   zIndex: 10000
 })
@@ -47,9 +46,9 @@ const containerVisibleClass = css({
 
 const containerMinimizedClass = css({
   cursor: 'pointer',
-  transform: 'translateX(94%)',
+  transform: 'translateX(-83%)',
   ':hover': {
-    transform: 'translateX(92%)'
+    transform: 'translateX(-80%)'
   },
   '& > iframe': {
     pointerEvents: 'none'

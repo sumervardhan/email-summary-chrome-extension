@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        sidebar: './src/sidebar.jsx'    
+        sidebar: './src/sidebar.jsx'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -23,20 +23,14 @@ module.exports = {
                         presets: ['@babel/preset-env', '@babel/preset-react']
                     }
                 }
-            },
-            {
-                test: /\.(scss|css)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
+            }
         ]
     },
     plugins: [
     new CopyPlugin({
         patterns: [
           { from: "public" },
-        ]}),
-    new MiniCssExtractPlugin({
-        filename: 'styles/[name].css',
-        }),
-    ],
+          { from: "src/styles/sidebar.css", to: "styles" }
+        ]})
+    ]
 };

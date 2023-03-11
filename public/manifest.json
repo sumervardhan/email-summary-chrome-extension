@@ -5,7 +5,7 @@
     "manifest_version": 3,
     "author": "Sumer Vardhan",
     "action": {
-        "default_title": ""
+        "default_title": "Summarise.ai"
     },
     "content_scripts": [
         {
@@ -15,7 +15,8 @@
         }
     ],
     "permissions": [
-      "scripting"
+      "scripting",
+      "activeTab"
     ],
     "background": {
       "service_worker": "background.js"

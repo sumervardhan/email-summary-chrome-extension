@@ -41,21 +41,21 @@ function boot() {
 
 function EmailInput () {
     return (
-        <input type = "text" defaultValue = "Insert email here..." className = "emailInput" id ="emailInput">
+        <input type = "text" defaultValue = "Insert email here..." id ="emailInput">
         </input>
     );
 }
 
 function SummariseButton () {
     return (
-        <button className="button-9" role="button" onClick={getOpenAiResponse}>Summarise</button>
+        <button id="summariseButton" role="button" onClick={getOpenAiResponse}>Summarise</button>
     )
 }
 
 function PopUpContents () {
     return (
-        <div className = "popupContainer">
-            <h1 className = "summariserTitle">Summarise!</h1><br/>
+        <div id="popupContainer">
+            <h1 id="summariserTitle">Summarise!</h1><br/>
             <EmailInput/><br/>
             <SummariseButton/>
         </div>

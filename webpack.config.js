@@ -5,8 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        sidebar: './src/sidebar.jsx',
-        background: './src/background.js'
+        sidebar: './src/sidebar.jsx'    
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -32,10 +31,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-        template: '/src/sidebar.html',
-        filename: '[name].html'
-        }),
     new CopyPlugin({
         patterns: [
           { from: "public" },

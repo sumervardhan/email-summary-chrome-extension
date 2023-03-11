@@ -4,21 +4,17 @@
     "description": "Summarise your emails",
     "manifest_version": 3,
     "author": "Sumer Vardhan",
-    "action": {
-        "default_title": "Summarise.ai"
-    },
     "content_scripts": [
         {
           "js": ["sidebar.js"],
-          "css": ["styles/sidebar.css"],
-          "matches": ["<all_urls>"]
+          "matches": ["<all_urls>"],
+          "run_at": "document_end" 
         }
     ],
-    "permissions": [
-      "scripting",
-      "activeTab"
-    ],
-    "background": {
-      "service_worker": "background.js"
-    }
+    "web_accessible_resources": [
+      {
+        "resources": [ "styles/sidebar.css" ],
+        "matches": [ "<all_urls>" ]
+      }
+    ]
 }

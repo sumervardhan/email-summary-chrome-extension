@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Frame } from './frame.js';
-import './styles/sidebar.css';
 
 // openai API call params
 const MODEL = "gpt-3.5-turbo"
@@ -34,6 +33,11 @@ if (Frame.isReady()) {
 function boot() {
     const sidebar = document.createElement('div');
     sidebar.id = 'react-target';
+    var link = document.createElement("link");
+    link.type = "text/css";
+    link.rel = "stylesheet";
+    link.href = chrome.runtime.getURL("./styles/sidebar.css");
+    document.getElementsByTagName("head")[0].appendChild(link);
     document.body.appendChild(sidebar);
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
     root.render(<Frame containerChildren={<PopUpContents />}/>);

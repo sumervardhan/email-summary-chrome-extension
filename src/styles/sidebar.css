@@ -85,10 +85,21 @@
   vertical-align: bottom;
 }
 
-#popupContainer {
+#sidebarContainer {
   all: unset;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+  align-items: flex-end;
+  padding: 2px;
+}
+
+.summariserIcon314 {
+  height: 50px;
+  width: 56px;
+  right: 0px;
 }
 
 #summariserTitle {

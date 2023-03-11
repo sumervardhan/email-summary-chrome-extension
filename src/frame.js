@@ -7,7 +7,7 @@ const iframeClass = css({
   border: 'none',
   width: '100%',
   height: '100%',
-  background: 'black',
+  background: '#272727',
   color: 'white',
   borderRadius: '8px',
   boxShadow: '-1px 1px 8px rgba(0,0,0,.15)'
@@ -46,10 +46,7 @@ const containerVisibleClass = css({
 
 const containerMinimizedClass = css({
   cursor: 'pointer',
-  transform: 'translateX(-83%)',
-  ':hover': {
-    transform: 'translateX(-80%)'
-  },
+  transform: 'translateX(-87%)',
   '& > iframe': {
     pointerEvents: 'none'
   }

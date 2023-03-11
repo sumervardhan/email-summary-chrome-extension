@@ -2,6 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Frame } from './frame.js';
 
+const starIconSrc = chrome.runtime.getURL('./icons/star.png');
+const settingsIconSrc = chrome.runtime.getURL('./icons/settings.png');
+const magnifyingGlassIconSrc = chrome.runtime.getURL('./icons/magnifying_glass.png');
+const userIconSrc = chrome.runtime.getURL('./icons/user.png');
+const websiteIconSrc = chrome.runtime.getURL('./icons/website.png');
+
 // openai API call params
 const MODEL = "gpt-3.5-turbo"
 const CHAT_BOT_PRIMER = "You are a secretary for a busy CEO. Your job is to help summarise their emails, highlighting important points, questions, and action items."
@@ -56,15 +62,25 @@ function SummariseButton () {
     )
 }
 
+function ImageComponent({ src, alt }) {
+    return (
+      <img className = 'summariserIcon314' src={src} alt={alt} />
+    );
+  }
+
 function PopUpContents () {
     return (
-        <div id="popupContainer">
-            <h1 id="summariserTitle">Summarise!</h1><br/>
-            <EmailInput/><br/>
-            <SummariseButton/>
+        <div id="sidebarContainer">
+            <ImageComponent src={starIconSrc} alt='Summarise'/>
+            <ImageComponent src={magnifyingGlassIconSrc} alt='Summary History'/>
+            <ImageComponent src={userIconSrc} alt='User'/>
+            <ImageComponent src={settingsIconSrc} alt='Settings'/>
+            <ImageComponent src={websiteIconSrc} alt='Our Website'/>
         </div>
     )
 }
+
+
 
 
 

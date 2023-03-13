@@ -11,8 +11,6 @@ const MAGNIFYING_GLASS_ICON_SRC = chrome.runtime.getURL('./icons/magnifying_glas
 const USER_ICON_SRC = chrome.runtime.getURL('./icons/user.png');
 const WEBSITE_ICON_SRC = chrome.runtime.getURL('./icons/website.png');
 
-let frameRef = React.createRef();
-
 // openai API call params
 const MODEL = "gpt-3.5-turbo"
 const CHAT_BOT_PRIMER = "You are a secretary for a busy CEO. Your job is to help summarise their emails, highlighting important points, questions, and action items."
@@ -58,7 +56,7 @@ function boot() {
     document.body.appendChild(sidebar);
 
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
-    root.render(<Frame ref = {frameRef} containerChildren={<PopUpContents />}/>);
+    root.render(<Frame containerChildren={<PopUpContents />}/>);
 }
 
 function ImageComponent({ src, alt }) {
@@ -67,11 +65,11 @@ function ImageComponent({ src, alt }) {
     );
   }
 
-function MenuToggle({src, alt}) {
-    return (
-        <img className = 'menuIcon314' src={src} alt={alt} onClick={this.insertMenuElements} />
-      );
-}
+// function MenuToggle({src, alt}) {
+//     return (
+//         <img className = 'menuIcon314' src={src} alt={alt} onClick={this.insertMenuElements} />
+//       );
+// }
 
 function PopUpContents () {
     return (
@@ -87,7 +85,6 @@ function PopUpContents () {
 }
 
 function insertMenuElements () {
-    this.frameRef.current.toggle()
     var sidebarContainer = document.getElementById('sidebarContainer');
     MENU_ITEM_LIST.forEach(function(x) {
         var title = document.createElement("p");

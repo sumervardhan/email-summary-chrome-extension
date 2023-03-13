@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Frame } from './frame.js';
+import {MenuData} from './MenuData.js';
 
 const MENU_ITEM_LIST = ['Summarise', 'Summary History', 'User', 'Settings', 'Our Website'];
 
@@ -73,41 +74,42 @@ function ImageComponent({ src, alt }) {
 
 function PopUpContents () {
     return (
-        <div id="sidebarContainer">
-            <MenuToggle src={MENU_ICON_SRC} alt='Toggle Menu'/>
-            <ImageComponent src={STAR_ICON_SRC} alt='Summarise'/>
-            <ImageComponent src={MAGNIFYING_GLASS_ICON_SRC} alt='Summary History'/>
-            <ImageComponent src={USER_ICON_SRC} alt='User'/>
-            <ImageComponent src={SETTINGS_ICON_SRC} alt='Settings'/>
-            <ImageComponent src={WEBSITE_ICON_SRC} alt='Our Website'/>
+        <div className="sidebarContainer">
+            <ul className="sidebarList">
+            {MenuData.map((val, key) =>{
+                return ( 
+                <li 
+                className="menu-row"
+                id={window.location.pathname == val.link ? "active" : ""}
+                key={key} 
+                onClick={() => {
+                    window.location.pathname = val.link;
+                    }}
+                >
+                    <div id="icon">{val.icon}</div>
+                    <div id="title">{val.title}</div>
+                </li>
+                );
+            })}
+            </ul>
+            
         </div>
     )
 }
 
-function insertMenuElements () {
-    var sidebarContainer = document.getElementById('sidebarContainer');
-    MENU_ITEM_LIST.forEach(function(x) {
-        var title = document.createElement("p");
-        title.className = "menuTitle314"
-        title.innerHTML = x;
-        sidebarContainer.appendChild(title);
-    })
-}
-
-
 
 function wrapBodyNodesInDiv(parentNode) {
 
-let wrapper = document.createElement("div");
-wrapper.id = 'body-wrapper'
+    let wrapper = document.createElement("div");
+    wrapper.id = 'body-wrapper'
 
-const childNodes = parentNode.childNodes;
+    const childNodes = parentNode.childNodes;
 
-childNodes.forEach(function(x) {
-    wrapper.appendChild(x.cloneNode(true))
-})
+    childNodes.forEach(function(x) {
+        wrapper.appendChild(x.cloneNode(true))
+    })
 
-return wrapper;
+    return wrapper;
 }
 
 

@@ -5,7 +5,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: {
-        sidebar: './src/sidebar.jsx'
+        sidebar: './src/sidebar.jsx',
+        MenuData: './src/MenuData.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

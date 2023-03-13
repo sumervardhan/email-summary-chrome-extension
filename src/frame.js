@@ -9,7 +9,6 @@ const iframeClass = css({
   height: '100%',
   background: '#272727',
   color: 'white',
-  borderRadius: '8px',
   boxShadow: '-1px 1px 8px rgba(0,0,0,.15)'
 })
 
@@ -33,8 +32,7 @@ const containerClass = css({
   top: '0px',
   left: '0px',
   height: '100%',
-  width: '65%',
-  maxWidth: '400px',
+  width: '25%',
   boxSizing: 'border-box',
   transition: 'transform .45s cubic-bezier(0, 0, 0.3, 1)',
   zIndex: 10000
@@ -46,7 +44,7 @@ const containerVisibleClass = css({
 
 const containerMinimizedClass = css({
   cursor: 'pointer',
-  transform: 'translateX(-87%)',
+  transform: 'translateX(-78%)',
   '& > iframe': {
     pointerEvents: 'none'
   }

@@ -13,7 +13,7 @@
     ],
     "web_accessible_resources": [
       {
-        "resources": [ "styles/sidebar.css" ],
+        "resources": [ "styles/sidebar.css", "icons/**" ],
         "matches": [ "<all_urls>" ]
       }
     ]

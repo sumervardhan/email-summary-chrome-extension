@@ -2,11 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Frame } from './frame.js';
 
-const starIconSrc = chrome.runtime.getURL('./icons/star.png');
-const settingsIconSrc = chrome.runtime.getURL('./icons/settings.png');
-const magnifyingGlassIconSrc = chrome.runtime.getURL('./icons/magnifying_glass.png');
-const userIconSrc = chrome.runtime.getURL('./icons/user.png');
-const websiteIconSrc = chrome.runtime.getURL('./icons/website.png');
+const MENU_ITEM_LIST = ['Summarise', 'Summary History', 'User', 'Settings', 'Our Website'];
+
+const MENU_ICON_SRC = chrome.runtime.getURL('./icons/menu.png');
+const STAR_ICON_SRC = chrome.runtime.getURL('./icons/star.png');
+const SETTINGS_ICON_SRC = chrome.runtime.getURL('./icons/settings.png');
+const MAGNIFYING_GLASS_ICON_SRC = chrome.runtime.getURL('./icons/magnifying_glass.png');
+const USER_ICON_SRC = chrome.runtime.getURL('./icons/user.png');
+const WEBSITE_ICON_SRC = chrome.runtime.getURL('./icons/website.png');
+
+let frameRef = React.createRef();
 
 // openai API call params
 const MODEL = "gpt-3.5-turbo"
@@ -37,29 +42,23 @@ if (Frame.isReady()) {
 }
 
 function boot() {
-    const sidebar = document.createElement('div');
-    sidebar.id = 'react-target';
+    let body = document.getElementsByTagName('body')[0];
+    let wrappedBody = wrapBodyNodesInDiv(body);
+    document.body.innerHTML = '';
+    document.body.appendChild(wrappedBody);
+    
     var link = document.createElement("link");
     link.type = "text/css";
     link.rel = "stylesheet";
     link.href = chrome.runtime.getURL("./styles/sidebar.css");
     document.getElementsByTagName("head")[0].appendChild(link);
+
+    const sidebar = document.createElement('div');
+    sidebar.id = 'react-target';
     document.body.appendChild(sidebar);
+
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
-    root.render(<Frame containerChildren={<PopUpContents />}/>);
-}
-
-function EmailInput () {
-    return (
-        <input type = "text" defaultValue = "Insert email here..." id ="emailInput">
-        </input>
-    );
-}
-
-function SummariseButton () {
-    return (
-        <button id="summariseButton" role="button" onClick={getOpenAiResponse}>Summarise</button>
-    )
+    root.render(<Frame ref = {frameRef} containerChildren={<PopUpContents />}/>);
 }
 
 function ImageComponent({ src, alt }) {
@@ -68,22 +67,51 @@ function ImageComponent({ src, alt }) {
     );
   }
 
+function MenuToggle({src, alt}) {
+    return (
+        <img className = 'menuIcon314' src={src} alt={alt} onClick={this.insertMenuElements} />
+      );
+}
+
 function PopUpContents () {
     return (
         <div id="sidebarContainer">
-            <ImageComponent src={starIconSrc} alt='Summarise'/>
-            <ImageComponent src={magnifyingGlassIconSrc} alt='Summary History'/>
-            <ImageComponent src={userIconSrc} alt='User'/>
-            <ImageComponent src={settingsIconSrc} alt='Settings'/>
-            <ImageComponent src={websiteIconSrc} alt='Our Website'/>
+            <MenuToggle src={MENU_ICON_SRC} alt='Toggle Menu'/>
+            <ImageComponent src={STAR_ICON_SRC} alt='Summarise'/>
+            <ImageComponent src={MAGNIFYING_GLASS_ICON_SRC} alt='Summary History'/>
+            <ImageComponent src={USER_ICON_SRC} alt='User'/>
+            <ImageComponent src={SETTINGS_ICON_SRC} alt='Settings'/>
+            <ImageComponent src={WEBSITE_ICON_SRC} alt='Our Website'/>
         </div>
     )
 }
 
+function insertMenuElements () {
+    this.frameRef.current.toggle()
+    var sidebarContainer = document.getElementById('sidebarContainer');
+    MENU_ITEM_LIST.forEach(function(x) {
+        var title = document.createElement("p");
+        title.className = "menuTitle314"
+        title.innerHTML = x;
+        sidebarContainer.appendChild(title);
+    })
+}
 
 
 
+function wrapBodyNodesInDiv(parentNode) {
 
+let wrapper = document.createElement("div");
+wrapper.id = 'body-wrapper'
+
+const childNodes = parentNode.childNodes;
+
+childNodes.forEach(function(x) {
+    wrapper.appendChild(x.cloneNode(true))
+})
+
+return wrapper;
+}
 
 
 

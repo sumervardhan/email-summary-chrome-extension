@@ -9,10 +9,10 @@ boot();
 
 function boot() {
     // Wrap existing body contents in div#body-wrapper
-    let body = document.getElementsByTagName('body')[0];
-    let wrappedBody = wrapBodyNodesInDiv(body);
-    document.body.innerHTML = '';
-    document.body.appendChild(wrappedBody);
+    // let body = document.getElementsByTagName('body')[0];
+    // let wrappedBody = wrapBodyNodesInDiv(body);
+    // document.body.innerHTML = '';
+    // document.body.appendChild(wrappedBody);
     
     // Add ref to stylesheet sidebar.css
     var link = document.createElement("link");
@@ -48,7 +48,7 @@ function MenuItems () {
         <div className="sidebar-container">
             <div id='header-container'>
                 <div id="app-name-container">
-                    <p id='app-name'>INBOX.AI</p>
+                    <div id='app-name'>INBOX.AI</div>
                 </div>
                 <div 
                     id="menu-icon-container"

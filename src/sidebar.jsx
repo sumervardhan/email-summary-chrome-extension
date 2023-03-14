@@ -46,11 +46,16 @@ function MenuItems () {
     }
     return (
         <div className="sidebar-container">
-            <div 
-                id="menu-icon-container"
-                onClick={handleMenuClick}
-            >
-                <MenuIcon id="menu-icon"/>
+            <div id='header-container'>
+                <div id="app-name-container">
+                    <p id='app-name'>INBOX.AI</p>
+                </div>
+                <div 
+                    id="menu-icon-container"
+                    onClick={handleMenuClick}
+                >
+                    <MenuIcon id="menu-icon"/>
+                </div>
             </div>
             <ul className="sidebar-list">
             {MenuData.map((val, key) =>{

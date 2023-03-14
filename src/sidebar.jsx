@@ -30,7 +30,6 @@ function boot() {
 }
 
 function Sidebar () {
-    
     return (<Frame containerChildren={<MenuItems />}/>)
 }
 
@@ -42,11 +41,11 @@ function MenuItems () {
     }
     return (
         <div className="sidebarContainer">
-            <button 
+            <div 
                 onClick={handleMenuClick}
             >
                 <MenuIcon/>
-            </button>
+            </div>
             <ul className="sidebarList">
             {MenuData.map((val, key) =>{
                 return ( 

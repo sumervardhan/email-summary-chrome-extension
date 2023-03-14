@@ -8,21 +8,25 @@ import { getOpenAiResponse } from './OpenAiService'
 boot();
 
 function boot() {
+    // Wrap existing body contents in div#body-wrapper
     let body = document.getElementsByTagName('body')[0];
     let wrappedBody = wrapBodyNodesInDiv(body);
     document.body.innerHTML = '';
     document.body.appendChild(wrappedBody);
     
+    // Add ref to stylesheet sidebar.css
     var link = document.createElement("link");
     link.type = "text/css";
     link.rel = "stylesheet";
     link.href = chrome.runtime.getURL("./styles/sidebar.css");
     document.getElementsByTagName("head")[0].appendChild(link);
 
+    // Add div to render sidebar to body
     const sidebar = document.createElement('div');
     sidebar.id = 'react-target';
     document.body.appendChild(sidebar);
 
+    // Render sidebar
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
     var frameRef = React.createRef();
     root.render(<Sidebar/>)
@@ -38,15 +42,17 @@ function MenuItems () {
     const [show, setShow] = React.useState(false)
     function handleMenuClick() {
         setShow(!show);
+        Frame.toggle();
     }
     return (
-        <div className="sidebarContainer">
+        <div className="sidebar-container">
             <div 
+                id="menu-icon-container"
                 onClick={handleMenuClick}
             >
-                <MenuIcon/>
+                <MenuIcon id="menu-icon"/>
             </div>
-            <ul className="sidebarList">
+            <ul className="sidebar-list">
             {MenuData.map((val, key) =>{
                 return ( 
                 <li 
@@ -57,7 +63,7 @@ function MenuItems () {
                     window.location.pathname = val.link;
                     }}
                 >
-                    <div className="icon" id="icon">{val.icon}</div>
+                    <div id="icon">{val.icon}</div>
                     {show && <div id="title">{val.title}</div>}
                 </li>
                 );

@@ -32,7 +32,7 @@ const containerClass = css({
   top: '0px',
   left: '0px',
   height: '100%',
-  width: '25%',
+  width: '18%',
   boxSizing: 'border-box',
   transition: 'transform .45s cubic-bezier(0, 0, 0.3, 1)',
   zIndex: 10000
@@ -113,7 +113,6 @@ export class Frame extends Component {
   }
 
   static defaultProps = {
-    toggleStateFunc: () => {},
     url: '',
     delay: 0,
     maskClassName: '',
@@ -128,7 +127,6 @@ export class Frame extends Component {
   }
 
   static propTypes = {
-    toggleStateFunc: func,
     url: string,
     delay: number,
     maskClassName: string,
@@ -179,18 +177,6 @@ export class Frame extends Component {
     onLoad({
       mask: this.mask,
       frame: this.frame
-    })
-  }
-
-  onMaskClick = () => {
-    this.setState({
-      isMinimized: true
-    })
-  }
-
-  onFrameClick = () => {
-    this.setState({
-      isMinimized: false
     })
   }
 

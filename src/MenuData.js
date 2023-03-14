@@ -8,27 +8,27 @@ import GridViewIcon from '@mui/icons-material/GridView';
 export const MenuData = [
     {
         title: "Summarize",
-        icon: <StarOutlineIcon/>,
+        icon: <StarOutlineIcon id='menu-option-icon'/>,
         link: "/summarize"
     },
     {
         title: "Summary History",
-        icon: <SearchIcon/>,
+        icon: <SearchIcon id='menu-option-icon'/>,
         link: "/summaryHistory"
     },
     {
         title: "User",
-        icon: <PersonIcon/>,
+        icon: <PersonIcon id='menu-option-icon'/>,
         link: "/user"
     },
     {
         title: "Settings",
-        icon: <SettingsIcon/>,
+        icon: <SettingsIcon id='menu-option-icon'/>,
         link: "/settings"
     },
     {
         title: "Our Website",
-        icon: <GridViewIcon/>,
+        icon: <GridViewIcon id='menu-option-icon'/>,
         link: "/website"
     }
 ]

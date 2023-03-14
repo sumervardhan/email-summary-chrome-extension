@@ -5,14 +5,16 @@ import {MenuData} from './MenuData.js';
 import MenuIcon from '@mui/icons-material/Menu';
 import { getOpenAiResponse } from './OpenAiService'
 
+const INITIAL_MARGIN = '4%';
+const EXPANDED_MARGIN = '18%';
+
 boot();
 
 function boot() {
-    // Wrap existing body contents in div#body-wrapper
+    // Wrap existing body contents in div.body-wrapper which wraps div.body-container
     // let body = document.getElementsByTagName('body')[0];
     // let wrappedBody = wrapBodyNodesInDiv(body);
     // document.body.innerHTML = '';
-    // document.body.appendChild(wrappedBody);
     
     // Add ref to stylesheet sidebar.css
     var link = document.createElement("link");
@@ -21,7 +23,7 @@ function boot() {
     link.href = chrome.runtime.getURL("./styles/sidebar.css");
     document.getElementsByTagName("head")[0].appendChild(link);
 
-    // Add div to render sidebar to body
+    // Append div, in which sidebar will be rendered, to div.body-wrapper
     const sidebar = document.createElement('div');
     sidebar.id = 'react-target';
     document.body.appendChild(sidebar);
@@ -30,6 +32,10 @@ function boot() {
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
     var frameRef = React.createRef();
     root.render(<Sidebar/>)
+
+    // Shift the original body and head to make space for sidebar
+    document.querySelector('body').style.marginLeft = INITIAL_MARGIN
+    document.querySelector('head').style.marginLeft = INITIAL_MARGIN
 
 }
 
@@ -43,6 +49,13 @@ function MenuItems () {
     function handleMenuClick() {
         setShow(!show);
         Frame.toggle();
+        if (!show) {
+            document.querySelector('body').style.marginLeft = EXPANDED_MARGIN
+            document.querySelector('head').style.marginLeft = EXPANDED_MARGIN
+        } else {
+            document.querySelector('body').style.marginLeft = INITIAL_MARGIN
+            document.querySelector('head').style.marginLeft = INITIAL_MARGIN
+        }
     }
     return (
         <div className="sidebar-container">
@@ -78,19 +91,23 @@ function MenuItems () {
     )
 }
 
-
+// Returns body elements in div.body-wrapper and wraps that div in div.body-wrapper
 function wrapBodyNodesInDiv(parentNode) {
 
-    let wrapper = document.createElement("div");
-    wrapper.id = 'body-wrapper'
+    let bodyContainer = document.createElement("div");
+    bodyContainer.className = 'body-container'
 
     const childNodes = parentNode.childNodes;
 
     childNodes.forEach(function(x) {
-        wrapper.appendChild(x.cloneNode(true))
+        bodyContainer.appendChild(x.cloneNode(true))
     })
 
-    return wrapper;
+    let bodyWrapper = document.createElement('div');
+    bodyWrapper.className = 'body-wrapper';
+    bodyWrapper.appendChild(bodyContainer)
+
+    return bodyWrapper;
 }
 
 

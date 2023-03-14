@@ -56,8 +56,7 @@ export class Frame extends Component {
   render() {
     const { isVisible, isMinimized } = this.state
     const {
-      url,
-      className,
+      toggleStateFunc,
       maskClassName,
       maskStyle,
       containerClassName,
@@ -114,8 +113,9 @@ export class Frame extends Component {
   }
 
   static defaultProps = {
+    toggleStateFunc: () => {},
     url: '',
-    delay: 500,
+    delay: 0,
     maskClassName: '',
     maskStyle: {},
     containerClassName: '',
@@ -128,6 +128,7 @@ export class Frame extends Component {
   }
 
   static propTypes = {
+    toggleStateFunc: func,
     url: string,
     delay: number,
     maskClassName: string,

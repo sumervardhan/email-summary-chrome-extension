@@ -37,13 +37,19 @@
   color: black;
 }
 .menu-row #icon {
-  flex: 30%;
-  display: grid;
-  place-items: center;
+  flex: 10%;
+  display: flex;
+  justify-content: end;
+  padding: 2px;
+  transition: transform .45s cubic-bezier(0, 0, 0.3, 1);
 }
 
 .menu-row #title {
-  flex: 70%;
+  flex: 90%;
+}
+
+.minimized {
+  display: none;
 }
 
 

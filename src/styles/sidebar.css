@@ -101,6 +101,16 @@
   font-size: 3.2rem;
 }
 
+#back-icon{
+  font-size: 2rem;
+  padding: 16px;
+}
+
+#back-icon:hover{
+  color:rgba(255, 255, 255, 0.692);
+  font-size: 2.2rem;
+}
+
 #menu-option-icon {
   font-size: 3rem;
 }

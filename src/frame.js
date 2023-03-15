@@ -51,6 +51,7 @@ const containerMinimizedClass = css({
 })
 
 const FRAME_TOGGLE_FUNCTION = 'chromeIframeSheetToggle'
+const FRAME_OPEN_FUNCTION = 'chromeIframeSheetOpen'
 
 export class Frame extends Component {
   render() {
@@ -146,6 +147,7 @@ export class Frame extends Component {
     const { delay, onMount } = this.props
 
     window[FRAME_TOGGLE_FUNCTION] = this.toggleFrame
+    window[FRAME_OPEN_FUNCTION] = this.openFrame
 
     onMount({
       mask: this.mask,
@@ -186,6 +188,12 @@ export class Frame extends Component {
     })
   }
 
+  openFrame = () => {
+    this.setState({
+      isMinimized: false
+    })
+  }
+
   static isReady() {
     return typeof window[FRAME_TOGGLE_FUNCTION] !== 'undefined'
   }
@@ -193,6 +201,12 @@ export class Frame extends Component {
   static toggle() {
     if (window[FRAME_TOGGLE_FUNCTION]) {
       window[FRAME_TOGGLE_FUNCTION]()
+    }
+  }
+
+  static open() {
+    if (window[FRAME_OPEN_FUNCTION]) {
+      window[FRAME_OPEN_FUNCTION]()
     }
   }
 }

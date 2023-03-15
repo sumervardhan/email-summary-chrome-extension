@@ -20,15 +20,31 @@ const EXPANDED_MARGIN = '18%';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Frame containerChildren={<MenuItems />}/>
+        element: <Frame containerChildren={<MenuItems isOpen={false}/>}/>
     },
     {
         path: "/back",
-        element: <Frame containerChildren={<MenuItems />}/>
+        element: <Frame containerChildren={<MenuItems isOpen={true}/>}/>
     },
     {
       path: "/summarize",
-      element: <Frame containerChildren={<Summarize />}/>
+      element: <Frame containerChildren={<FrameTemplate content={<Summarize/>} />}/>
+    },
+    {
+        path: "/summaryHistory",
+        element: <Frame containerChildren={<FrameTemplate content={<SummaryHistory/>} />}/>
+    },
+    {
+        path: "/user",
+        element: <Frame containerChildren={<FrameTemplate content={<User/>} />}/>
+    },
+    {
+        path: "/settings",
+        element: <Frame containerChildren={<FrameTemplate content={<Settings/>} />}/>
+    },
+    {
+        path: "/website",
+        element: <Frame containerChildren={<FrameTemplate content={<OurWebsite/>} />}/>
     }
 ]);
 
@@ -69,9 +85,35 @@ function Summarize () {
     )
 }
 
+function SummaryHistory () {
+    return (
+        <div>Test</div>
+    )
+}
 
-function MenuItems () {
-    const [show, setShow] = React.useState(false)
+function User () {
+    return (
+        <div>Test</div>
+    )
+}
+
+function Settings () {
+    return (
+        <div>Test</div>
+    )
+}
+
+function OurWebsite () {
+    return (
+        <div>Test</div>
+    )
+}
+
+
+
+
+function MenuItems (props) {
+    const [show, setShow] = React.useState(props.isOpen)
     function handleMenuClick() {
         setShow(!show);
         Frame.toggle();
@@ -105,7 +147,6 @@ function MenuItems () {
             >      
                 <li 
                     className="menu-row"
-                    key={key} 
                 >
                     <div id="icon">{val.icon}</div>
                     {show && <div id="title">{val.title}</div>}
@@ -114,6 +155,32 @@ function MenuItems () {
                 );
             })}
             </ul>
+        </div>
+    )
+}
+
+function FrameTemplate (props) {
+    Frame.open();
+    document.querySelector('body').style.marginLeft = EXPANDED_MARGIN
+    document.querySelector('head').style.marginLeft = EXPANDED_MARGIN
+    return (
+        <div className="sidebar-container">
+            <div id='header-container'>
+                <div id="app-name-container">
+                    <div id='app-name'>INBOX.AI</div>
+                </div>
+                <Link 
+                    to="/back"
+                    id="link-tag"
+                >
+                    <div 
+                        id="menu-icon-container"
+                    >
+                        <ArrowBackIosIcon id="back-icon"/>
+                    </div>
+                </Link>
+            </div>
+            {props.content}
         </div>
     )
 }

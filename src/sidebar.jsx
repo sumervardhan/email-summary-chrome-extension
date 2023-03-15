@@ -4,11 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import { Frame } from './frame.js';
 import {MenuData} from './MenuData.js';
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { getOpenAiResponse } from './OpenAiService'
 
 import {
     createBrowserRouter,
     RouterProvider,
+    Link
 } from "react-router-dom";
   
 
@@ -17,12 +19,16 @@ const EXPANDED_MARGIN = '18%';
 
 const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Sidebar/>,
+        path: "/",
+        element: <Frame containerChildren={<MenuItems />}/>
+    },
+    {
+        path: "/back",
+        element: <Frame containerChildren={<MenuItems />}/>
     },
     {
       path: "/summarize",
-      element: <Summarize/>
+      element: <Frame containerChildren={<Summarize />}/>
     }
 ]);
 
@@ -55,10 +61,6 @@ function boot() {
         <RouterProvider router={router} />
     </React.StrictMode>
     )
-}
-
-function Sidebar () {
-    return (<Frame containerChildren={<MenuItems />}/>)
 }
 
 function Summarize () {
@@ -97,17 +99,18 @@ function MenuItems () {
             <ul className="sidebar-list">
             {MenuData.map((val, key) =>{
                 return ( 
+            <Link 
+                to={val.link}
+                id="link-tag"
+            >      
                 <li 
-                className="menu-row"
-                id={window.location.pathname == val.link ? "active" : ""}
-                key={key} 
-                onClick={() => {
-                    window.location.pathname = val.link;
-                    }}
+                    className="menu-row"
+                    key={key} 
                 >
                     <div id="icon">{val.icon}</div>
                     {show && <div id="title">{val.title}</div>}
                 </li>
+            </Link>
                 );
             })}
             </ul>

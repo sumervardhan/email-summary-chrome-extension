@@ -110,5 +110,9 @@
 }
 
 #react-target {
-  all:unset;
+  all: unset;
+}
+
+#link-tag{
+  all: unset;
 }

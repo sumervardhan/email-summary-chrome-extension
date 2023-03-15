@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import ReactDOM from "react-dom/client";
 import { Route, Switch } from 'react-router-dom';
 import { Frame } from './frame.js';
@@ -113,8 +113,8 @@ function OurWebsite () {
 
 
 function MenuItems (props) {
-    const [show, setShow] = React.useState(props.isOpen)
-    function handleMenuClick() {
+    const [show, setShow] = useState(props.isOpen)
+    const handleMenuClick = () => {
         setShow(!show);
         Frame.toggle();
         if (!show) {
@@ -144,10 +144,9 @@ function MenuItems (props) {
             <Link 
                 to={val.link}
                 id="link-tag"
+                key={key}
             >      
-                <li 
-                    className="menu-row"
-                >
+                <li className="menu-row">
                     <div id="icon">{val.icon}</div>
                     {show && <div id="title">{val.title}</div>}
                 </li>
@@ -160,7 +159,11 @@ function MenuItems (props) {
 }
 
 function FrameTemplate (props) {
-    Frame.open();
+
+    useEffect(() => {
+        Frame.open()
+    })
+    
     document.querySelector('body').style.marginLeft = EXPANDED_MARGIN
     document.querySelector('head').style.marginLeft = EXPANDED_MARGIN
     return (

@@ -24,7 +24,8 @@
     "@mui/material": "^5.11.12",
     "chrome-sidebar": "^0.1.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

@@ -1,20 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Route, Switch } from 'react-router-dom';
 import { Frame } from './frame.js';
 import {MenuData} from './MenuData.js';
 import MenuIcon from '@mui/icons-material/Menu';
 import { getOpenAiResponse } from './OpenAiService'
 
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom";
+  
+
 const INITIAL_MARGIN = '4%';
 const EXPANDED_MARGIN = '18%';
+
+const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Sidebar/>,
+    },
+    {
+      path: "/summarize",
+      element: <Summarize/>
+    }
+]);
+
+// Execution starts here
+// Shift the original body and head to make space for sidebar
+document.querySelector('body').style.marginLeft = INITIAL_MARGIN
+document.querySelector('head').style.marginLeft = INITIAL_MARGIN
 
 boot();
 
 function boot() {
-    // Wrap existing body contents in div.body-wrapper which wraps div.body-container
-    // let body = document.getElementsByTagName('body')[0];
-    // let wrappedBody = wrapBodyNodesInDiv(body);
-    // document.body.innerHTML = '';
     
     // Add ref to stylesheet sidebar.css
     var link = document.createElement("link");
@@ -30,17 +49,22 @@ function boot() {
 
     // Render sidebar
     const root = ReactDOM.createRoot(document.getElementById('react-target'));
-    var frameRef = React.createRef();
-    root.render(<Sidebar/>)
 
-    // Shift the original body and head to make space for sidebar
-    document.querySelector('body').style.marginLeft = INITIAL_MARGIN
-    document.querySelector('head').style.marginLeft = INITIAL_MARGIN
-
+    root.render(
+    <React.StrictMode>
+        <RouterProvider router={router} />
+    </React.StrictMode>
+    )
 }
 
 function Sidebar () {
     return (<Frame containerChildren={<MenuItems />}/>)
+}
+
+function Summarize () {
+    return (
+        <div>Test</div>
+    )
 }
 
 
@@ -91,24 +115,6 @@ function MenuItems () {
     )
 }
 
-// Returns body elements in div.body-wrapper and wraps that div in div.body-wrapper
-function wrapBodyNodesInDiv(parentNode) {
-
-    let bodyContainer = document.createElement("div");
-    bodyContainer.className = 'body-container'
-
-    const childNodes = parentNode.childNodes;
-
-    childNodes.forEach(function(x) {
-        bodyContainer.appendChild(x.cloneNode(true))
-    })
-
-    let bodyWrapper = document.createElement('div');
-    bodyWrapper.className = 'body-wrapper';
-    bodyWrapper.appendChild(bodyContainer)
-
-    return bodyWrapper;
-}
 
 
 

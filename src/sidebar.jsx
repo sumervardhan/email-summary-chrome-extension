@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from "react-dom/client";
-import { Route, Switch } from 'react-router-dom';
 import { Frame } from './frame.js';
 import {MenuData} from './MenuData.js';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -108,8 +107,6 @@ function OurWebsite () {
         <div>Test</div>
     )
 }
-
-
 
 
 function MenuItems (props) {
